@@ -1,0 +1,24 @@
+class Solution {
+    public int maxConsecutiveAnswers(String answerKey, int k) {
+        int n,i = 0,j = 0,ans = 0,t = 0,f = 0;
+        n = answerKey.length();
+        while(j < n)    //Sliding Window Technique
+        {
+            if(answerKey.charAt(j) == 'T')
+                t++;
+            else
+                f++;
+            while(Math.min(t,f) > k)
+            {
+                if(answerKey.charAt(i) == 'T')
+                    t--;
+                else
+                    f--;
+                i++;
+            }
+            ans = Math.max(ans,t+f);
+            j++;
+        }
+        return ans;        
+    }
+}
